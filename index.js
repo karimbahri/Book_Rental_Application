@@ -14,6 +14,15 @@ db_connect();
 /* MIDDLEWARES */
 app.use(express.json());
 app.use('/', routes);
+app.use((err, req, res, next) => {
+    res
+    .status(504)
+    .json({
+        status: "Failure",
+        message: err.message || "Server error"
+    });
+    next();
+})
 /* MIDDLEWARES */
 
 
