@@ -1,5 +1,5 @@
 const express = require('express');
-const expressAsyncHandler = require("express-async-handler");
+// const expressAsyncHandler = require("express-async-handler");
 const crudControllers = require('../controllers/controllers');
 
 const routes = express.Router();
@@ -7,8 +7,8 @@ const routes = express.Router();
 // ----------------crud requests----------------
 routes
 .get('/api/user', crudControllers.findUser)
-.put('/api/users/:id', apiControllers.updateUser)
-.delete('/api/users/:id', apiControllers.deleteUser)
+.put('/api/users/:id', crudControllers.updateUser)
+.delete('/api/users/:id', crudControllers.deleteUser)
 
 // ----------------connection request----------------
 
