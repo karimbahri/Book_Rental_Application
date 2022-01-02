@@ -1,0 +1,125 @@
+.sidebar {
+  flex: 1;
+  height: 100vh;
+  width: calc(100vw - 78%);
+  background: linear-gradient(to bottom, #f9a830, #fac673);
+  position: fixed;
+  /* top: 50px; */
+
+  overflow: hidden;
+  /* background: red; */
+}
+
+.sd-container {
+  position: relative;
+  width: 100%;
+}
+
+.sd-container.sd-navigation {
+  position: fixed;
+  height: 100%;
+  /* background: var(--blue); */
+  /* border-left: 10px solid red; */
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.sd-navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 25%;
+  padding-left: 5%;
+}
+/* .sd-navigation ul li {
+  position: relative;
+  width: 50%;
+  list-style: none;
+  border-radius: 30px;
+} */
+/* .sd-navigation ul li.hovered , */
+.sd-navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.sd-navigation ul li:hover,
+.sd-navigation ul li.hovered {
+  background: white;
+}
+
+.sd-navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: white;
+  /* background: red; */
+}
+
+.sd-navigation ul li:hover a,
+.sd-navigation ul li.hovered a {
+  color: #f9a830;
+}
+
+.sd-navigation ul li a .sd-icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.sd-navigation ul li a .sd-icon ion-icon {
+  font-size: 1.75em;
+}
+
+.sd-navigation ul li a .sd-title {
+  position: relative;
+  display: block;
+  font-size: 1.2em;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.sd-navigation ul li:hover a::before,
+.sd-navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px white;
+  pointer-events: none;
+}
+
+.sd-navigation ul li:hover a::after,
+.sd-navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px white;
+  pointer-events: none;
+}
+
+/* .sd-navigation ul li:hover a .sd-icon ion-icon,
+.sd-navigation ul li.hovered a .sd-icon ion-icon {
+  color: #f9a830;
+} */

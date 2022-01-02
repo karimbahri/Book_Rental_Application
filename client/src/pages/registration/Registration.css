@@ -126,7 +126,7 @@ form .category label {
   align-items: center;
   cursor: pointer;
 }
-form .category label .dot {
+form .category label .r-dot {
   height: 18px;
   width: 18px;
   border-radius: 50%;
@@ -135,15 +135,16 @@ form .category label .dot {
   border: 5px solid transparent;
   transition: all 0.3s ease;
 }
-#dot-1:checked ~ .category label .one,
-#dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three {
+#dot-1:checked ~ .category label .d-one,
+#dot-2:checked ~ .category label .d-two,
+#dot-3:checked ~ .category label .d-three {
   background: #f9a826;
   border-color: #d9d9d9;
 }
 form input[type="radio"] {
   display: none;
 }
+
 form .button {
   position: relative;
   height: 45px;
