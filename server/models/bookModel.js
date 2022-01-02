@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const bookSchema = mongoose.Schema({
     title: {
         type: String,
@@ -20,6 +22,9 @@ const bookSchema = mongoose.Schema({
         default: 5,
         min: 1,
         max: 5
+    },
+    duration: {
+        type: Number
     }
 },
 {

@@ -1,19 +1,25 @@
 const express = require('express');
 // const expressAsyncHandler = require("express-async-handler");
-const crudControllers = require('../controllers/controllers');
+const userControllers = require('../controllers/userControllers');
+const bookControllers = require('../controllers/bookControllers')
 
 const routes = express.Router();
 
-// ----------------crud requests----------------
+// ----------------user crud requests----------------
 routes
-.get('/api/user', crudControllers.findUser)
-.put('/api/users/:id', crudControllers.updateUser)
-.delete('/api/users/:id', crudControllers.deleteUser)
+.get('/api/user', userControllers.findUser)
+.put('/api/users/:id', userControllers.updateUser)
+.delete('/api/users/:id', userControllers.deleteUser)
 
-// ----------------connection request----------------
+// ----------------user connection request----------------
 
 routes
-.post('/api/signup', crudControllers.createUser)
-.post('/api/signin', crudControllers.login);
+.post('/api/signup', userControllers.createUser)
+.post('/api/signin', userControllers.login);
+
+// ----------------book crud request----------------
+
+// routes
+// .get('/api/book')
 
 module.exports = routes;

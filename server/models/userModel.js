@@ -48,6 +48,14 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "Male",
         validate: [checkGender, "unvalid gender"]
+    },
+    orders: {
+        type: [{
+            id: String,
+            checkout_date: Date,
+            checkin_date: Date
+        }],
+        default: []
     }
 },
 {
