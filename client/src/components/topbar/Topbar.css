@@ -1,0 +1,104 @@
+.topbar {
+  width: 100%;
+  height: 60px;
+  /* background-color: white; */
+  background: linear-gradient(to right, #f9a826, #f9a826, #fac673, #fac673);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarWrapper {
+  height: 100%;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 30px;
+  color: wheat;
+  cursor: pointer;
+}
+
+.topRight {
+  display: flex;
+  align-items: center;
+}
+
+.topbarIconContainer {
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px;
+  color: #555;
+}
+
+.topIconBadge {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.topAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.img-avatar {
+  position: relative;
+}
+.img-avatar::before {
+  position: absolute;
+  bottom: -3px;
+  right: 5px;
+  content: "";
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #23c552;
+  border: 2px solid white;
+}
+.tp-info1 {
+  display: flex;
+  border-radius: 15px;
+  padding: 0px 10px 0 10px;
+  border-style: none;
+  background-color: transparent;
+}
+.tp-info1:hover {
+  background: #dfb16dea;
+}
+.tp-info2 {
+  padding: 5px;
+  margin-right: 1rem;
+}
+
+.tp-info2 > p {
+  /* background: red; */
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: black;
+}
+.tp-info2 > span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+}
+
+p {
+  margin: 0;
+}

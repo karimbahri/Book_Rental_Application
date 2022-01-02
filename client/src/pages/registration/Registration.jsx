@@ -1,13 +1,24 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import "./Registration.css";
+import useToken from "../../useToken";
+import { useEffect } from "react";
 
 const Registration = () => {
+  const { token, setToken } = useToken();
+  const { sessonId } = useParams();
+
+  useEffect(() => {
+    console.log(sessonId);
+    if (!token) setToken(sessonId);
+  });
+
   return (
     <div className="reg-body">
       <div className="reg-container">
         <div className="title">Create New Account</div>
         <div className="content">
-          <form action="#" className="reg-form">
+          <form action="/" className="reg-form">
             <div className="user-details">
               <div className="input-box">
                 <span className="details">Full Name</span>
@@ -42,27 +53,31 @@ const Registration = () => {
                 <input type="text" placeholder="Enter your Address" required />
               </div>
               <div className="input-box">
-                <span className="details">Zip Code</span>
-                <input type="text" placeholder="Enter your Zip Code" required />
+                <span className="details">Postal Code</span>
+                <input
+                  type="text"
+                  placeholder="Enter your Postal Code"
+                  required
+                />
               </div>
             </div>
             <div className="gender-details">
-              <input type="radio" name="gender" id="dot-1" />
-              <input type="radio" name="gender" id="dot-2" />
-              <input type="radio" name="gender" id="dot-3" />
+              <input type="radio" name="__gender__" id="dot-1" />
+              <input type="radio" name="__gender__" id="dot-2" />
+              <input type="radio" name="__gender__" id="dot-3" />
               <span className="gender-title">Gender</span>
-              <div className="category" hidden>
+              <div className="category">
                 <label htmlFor="dot-1">
-                  <span className="dot one"></span>
-                  <span className="gender">Male</span>
+                  <span className="r-dot d-one"></span>
+                  <span className="__gender__">Male</span>
                 </label>
                 <label htmlFor="dot-2">
-                  <span className="dot two"></span>
-                  <span className="gender">Female</span>
+                  <span className="r-dot d-two"></span>
+                  <span className="__gender__">Female</span>
                 </label>
                 <label htmlFor="dot-3">
-                  <span className="dot three"></span>
-                  <span className="gender">Prefer not to say</span>
+                  <span className="r-dot d-three"></span>
+                  <span className="__gender__">Prefer not to say</span>
                 </label>
               </div>
             </div>
