@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.createUser = (req, res) => {
     if (!req.body) {
         return res
-        .status(404)
+        .status(403)
         .json({
             status: 'Failure',
             message: 'Cannot post empty object'
@@ -15,7 +15,7 @@ exports.createUser = (req, res) => {
     }
     if (!req.body.password) {
         return res
-        .status(404)
+        .status(403)
         .json({
             status: 'Failure',
             message: 'Password is required'
@@ -23,7 +23,7 @@ exports.createUser = (req, res) => {
     }
     if (/*req.body.password.length < 8*/ isStrongPassword(req.body.password)) {
         return res
-        .status(404)
+        .status(403)
         .json({
             status: 'Failure',
             message: 'password is shorter than the minimum allowed length (8).'
@@ -54,7 +54,7 @@ exports.createUser = (req, res) => {
     })
     .catch(err => {
         res
-          .status(404)
+          .status(403)
           .json({
             status: 'Failure',
             message: err.message || 'Error during user creation'
@@ -62,10 +62,10 @@ exports.createUser = (req, res) => {
     })
 }
 
-exports.findUser = (req, res) => {
+exports.findUsers = (req, res) => {
     let filter_object = {}
-    if (req.query)
-      filter_object = req.query;
+    // if (req.query)
+    //   filter_object = req.query;
     userModel
       .find(filter_object)
       .then(data => {
@@ -74,6 +74,30 @@ exports.findUser = (req, res) => {
             .json({
                 status: 'Success',
                 length: data.length,
+                data
+            })
+      })
+      .catch(err => {
+        res
+          .status(404)
+          .json({
+            status: 'Failure',
+            message: err.message || 'Error during finding users'
+          })
+        })
+}
+
+exports.findUserById = (req, res) => {
+    let filter_object = {}
+    // if (req.query)
+    //   filter_object = req.query;
+    userModel
+      .findById(req.params.id)
+      .then(data => {
+          res
+            .status(200)
+            .json({
+                status: 'Success',
                 data
             })
       })
@@ -118,7 +142,7 @@ exports.updateUser = (req, res) => {
       })
       .catch(err => {
         return res
-        .status(400)
+        .status(404)
         .json({
             status: 'Failure',
             message: err.message || 'Error during updating user'
@@ -149,7 +173,7 @@ exports.deleteUser = (req, res) => {
       })
       .catch(err => {
           res
-            .status(400)
+            .status(404)
             .json({
                 status: 'failure',
                 message: err.message
@@ -171,7 +195,7 @@ exports.login = async (req, res) => {
 
             // console.log(decrypted_pass);
             if (req.body.password !== /*decrypted_pass*/password)
-                return res.status(407)
+                return res.status(401)
                 .json({
                     status: 'Failure',
                     message: 'wrong password'
@@ -184,7 +208,7 @@ exports.login = async (req, res) => {
             });
         }
         else {
-            return res.status(407)
+            return res.status(401)
             .json({
                 status: 'Failure',
                 message: 'userName does not exist'
@@ -193,7 +217,7 @@ exports.login = async (req, res) => {
     }
     catch(err) {
         res
-        .status(400)
+        .status(404)
         .json({
             status: "failure",
             message: err.message || "cannot connect"

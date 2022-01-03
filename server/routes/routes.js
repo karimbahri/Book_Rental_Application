@@ -7,7 +7,8 @@ const routes = express.Router();
 
 // ----------------user crud requests----------------
 routes
-.get('/api/user', userControllers.findUser)
+.get('/api/users', userControllers.findUsers)
+.get('/api/user/:id', userControllers.findUserById)
 .put('/api/users/:id', userControllers.updateUser)
 .delete('/api/users/:id', userControllers.deleteUser)
 
