@@ -33,7 +33,7 @@ exports.createUser = (req, res) => {
         fullName: req.body.fullName,
         email: req.body.email,
         isAdmin: req.body.isAdmin,
-        password: cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY),
+        password: req.body.password/*cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY)*/,
         address: req.body.address,
         userName: req.body.userName,
         phoneNumber: req.body.phoneNumber,
@@ -166,11 +166,11 @@ exports.login = async (req, res) => {
         {
             const {password, ...others} = user._doc;
 
-            let decrypted_pass = cryptoJs.AES.decrypt(password, process.env.ENCRYPTIONKEY);
-            decrypted_pass = decrypted_pass.toString(cryptoJs.enc.Utf8);
+            // let decrypted_pass = cryptoJs.AES.decrypt(password, process.env.ENCRYPTIONKEY);
+            // decrypted_pass = decrypted_pass.toString(cryptoJs.enc.Utf8);
 
-            console.log(decrypted_pass);
-            if (req.body.password !== decrypted_pass)
+            // console.log(decrypted_pass);
+            if (req.body.password !== /*decrypted_pass*/password)
                 return res.status(407)
                 .json({
                     status: 'Failure',
