@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 const db_connect = require('./database/connections');
 const routes = require('./routes/routes');
@@ -12,7 +13,7 @@ const PORT = process.env.PORT || 5000;
 db_connect();
 
 /* MIDDLEWARES */
-app.use(express.json());
+app.use(express.json(), cors());
 app.use('/', routes);
 app.use((err, req, res, next) => {
     res

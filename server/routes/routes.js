@@ -1,7 +1,8 @@
 const express = require('express');
 // const expressAsyncHandler = require("express-async-handler");
 const userControllers = require('../controllers/userControllers');
-const bookControllers = require('../controllers/bookControllers')
+const bookControllers = require('../controllers/bookControllers');
+const mailRegistrationControllers = require('../controllers/mailRegistrationControllers');
 
 const routes = express.Router();
 
@@ -22,5 +23,10 @@ routes
 
 // routes
 // .get('/api/book')
+
+// ----------------add user request----------------
+
+routes
+.post('/api/addUser', mailRegistrationControllers.addUser);
 
 module.exports = routes;
