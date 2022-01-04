@@ -61,7 +61,7 @@ const Registration = () => {
                 />
               </div>
             </div>
-            <div className="gender-details">
+            {/* <div className="gender-details">
               <input type="radio" name="__gender__" id="dot-1" />
               <input type="radio" name="__gender__" id="dot-2" />
               <input type="radio" name="__gender__" id="dot-3" />
@@ -80,7 +80,7 @@ const Registration = () => {
                   <span className="__gender__">Prefer not to say</span>
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="button">
               <input type="submit" value="Register" />
             </div>

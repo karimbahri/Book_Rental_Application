@@ -5,11 +5,10 @@ import Login from "./pages/login/Login";
 import Registration from "./pages/registration/Registration";
 import Dashboard from "./pages/dashboard/Dashboard";
 import useToken from "./useToken";
-import InviteUser from "./components/InviteUser/inviteUser";
 
 const App = () => {
-  const { token, setToken } = useToken();
-  console.log(token);
+  const { setToken } = useToken();
+  let token = localStorage.getItem("token");
 
   return (
     <BrowserRouter>

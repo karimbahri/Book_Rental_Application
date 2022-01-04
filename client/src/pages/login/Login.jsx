@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
+import server from "../../apis/server";
+
 import "./Login.css";
 import avatar from "../../assets/avatar.svg";
 import library_logo from "../../assets/Login/LIBRARY-MANAGEMENT-SYSTEM.png";
 import wave from "../../assets/Login/wave.png";
 
 const Login = ({ setToken }) => {
+
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [wrongCredential, setwrongCredential] = useState(false);
 
   useEffect(() => {
     const inputs = document.querySelectorAll(".input");
@@ -14,7 +18,7 @@ const Login = ({ setToken }) => {
     const toggle = document.getElementById("toggle");
 
     function showOrHidePassword(e) {
-      // console.log(e);
+      console.log(e);
       if (password.type === "password") {
         password.setAttribute("type", "text");
       } else {
@@ -24,11 +28,13 @@ const Login = ({ setToken }) => {
     toggle.addEventListener("click", showOrHidePassword);
 
     function addcl() {
+      setwrongCredential(false);
       let parent = this.parentNode.parentNode;
       parent.classList.add("focus");
     }
 
     function remcl() {
+      setwrongCredential(false);
       let parent = this.parentNode.parentNode;
       if (this.value === "") {
         parent.classList.remove("focus");
@@ -41,24 +47,25 @@ const Login = ({ setToken }) => {
     });
   }, []);
 
-  const loginUser = async (credentials) => {
+  const loginUser = async ({ username, password }) => {
     /**************************************************/
-    return fetch("http://localhost:8080/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    }).then((data) => data.json());
+
+    return server.post("/api/signin", {
+      userName: username,
+      password: password,
+    });
   };
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
-    });
-    setToken(token);
+
+    loginUser({ username, password })
+      .then((response) => {
+        setToken(response.data.token);
+      })
+      .catch((err) => {
+        setwrongCredential(true);
+      });
   };
 
   return (
@@ -69,7 +76,7 @@ const Login = ({ setToken }) => {
           <img src={library_logo} alt="library logo" />
         </div>
         <div className="login-content">
-          <form action="#" className="log-form">
+          <form className="log-form" action="/">
             <img src={avatar} alt="avatar" />
             <h2 className="_title_">Welcome</h2>
             <div className="input-div one">
@@ -95,7 +102,7 @@ const Login = ({ setToken }) => {
                   type="password"
                   className="input"
                   autoComplete="off"
-                  onChange={null}
+                  onChange={(e) => setPassword(e.target.value)}
                   id="password"
                 />
                 <div id="toggle">
@@ -104,12 +111,17 @@ const Login = ({ setToken }) => {
               </div>
             </div>
             <a href="#forgot-pw">Forgot Password?</a>
+            {wrongCredential && (
+              <div className="error-input">
+                Oops! Verify your username or password and Try again
+              </div>
+            )}
             <input
               type="submit"
               className="btn"
               value="Login"
-              onChange={(e) => setPassword(e.target.value)}
               onClick={onFormSubmit}
+              onChange={null}
             />
           </form>
           <div id="forgot-pw" className="login-content">

@@ -295,3 +295,7 @@ a:hover {
     justify-content: center;
   }
 }
+.error-input {
+  font-size: 1rem;
+  color: red;
+}
