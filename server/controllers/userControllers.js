@@ -29,23 +29,25 @@ exports.createUser = (req, res) => {
             message: 'password is shorter than the minimum allowed length (8).'
         })
     }
+    const now = new Date();
+    const current_date = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}`;
     const user = new userModel({
         fullName: req.body.fullName,
         email: req.body.email,
         isAdmin: req.body.isAdmin,
         password: req.body.password/*cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY)*/,
         address: req.body.address,
-        userName: req.body.userName,
+        userName: req.body.userName.toLowerCase(),
         phoneNumber: req.body.phoneNumber,
         zipCode: req.body.zipCode,
-        gender: req.body.gender
+        created_at: current_date
     });
 
     user
     .save()
     .then(data => {
         res
-          .status(200)
+          .status(202)
           .json({
               status: 'Success',
               data
@@ -184,7 +186,7 @@ exports.deleteUser = (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const user = await userModel.findOne({userName: req.body.userName});
+        const user = await userModel.findOne({userName: req.body.userName.toLowerCase()});
         
         if (user)
         {

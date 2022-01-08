@@ -44,11 +44,6 @@ const userSchema = mongoose.Schema({
         required: [true, "Missing phoneNumber"],
         validate: [isNumeric, "zip code is not valid"]
     },
-    gender: {
-        type: String,
-        default: "Male",
-        validate: [checkGender, "unvalid gender"]
-    },
     orders: {
         type: [{
             id: String,
@@ -56,11 +51,14 @@ const userSchema = mongoose.Schema({
             checkin_date: Date
         }],
         default: []
+    },
+    created_at: {
+        type: String
     }
-},
+}/*,
 {
     timestamps: true
-}
+}*/
 );
 
 const userModel = mongoose.model('user', userSchema);
