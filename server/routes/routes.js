@@ -3,6 +3,7 @@ const express = require('express');
 const userControllers = require('../controllers/userControllers');
 const bookControllers = require('../controllers/bookControllers');
 const mailRegistrationControllers = require('../controllers/mailRegistrationControllers');
+// const reset_settings = require('../controllers/reset-setting');
 
 const routes = express.Router();
 
@@ -18,6 +19,7 @@ routes
 routes
 .post('/api/signup', userControllers.createUser)
 .post('/api/signin', userControllers.login);
+// .put('/api/users-reset/:id', userControllers.reset_settings);
 
 // ----------------book crud request----------------
 
