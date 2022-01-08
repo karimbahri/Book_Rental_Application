@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   useEffect(() => {
     let list = document.querySelectorAll(".sd-navigation li");
-    // const d = document.querySelector(".sd-navigation li");
-    // d.classList.add("hovered");
+
     function activeLink() {
       list.forEach((item) => item.classList.remove("hovered"));
       this.classList.add("hovered");
@@ -31,14 +31,16 @@ const Sidebar = () => {
                 <span className="sd-title">Dashboard</span>
               </a>
             </li>
-            <li>
-              <Link to="/users">
-                <span className="sd-icon">
-                  <ion-icon name="people-outline"></ion-icon>
-                </span>
-                <span className="sd-title">Users</span>
-              </Link>
-            </li>
+            {user.isAdmin && (
+              <li>
+                <Link to="/users">
+                  <span className="sd-icon">
+                    <ion-icon name="people-outline"></ion-icon>
+                  </span>
+                  <span className="sd-title">Users</span>
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/books">
                 <span className="sd-icon">
@@ -47,14 +49,16 @@ const Sidebar = () => {
                 <span className="sd-title">Books</span>
               </Link>
             </li>
-            <li>
-              <Link to="/my-books">
-                <span className="sd-icon">
-                  <ion-icon name="layers-outline"></ion-icon>
-                </span>
-                <span className="sd-title">My books</span>
-              </Link>
-            </li>
+            {!user.isAdmin && (
+              <li>
+                <Link to="/my-books">
+                  <span className="sd-icon">
+                    <ion-icon name="layers-outline"></ion-icon>
+                  </span>
+                  <span className="sd-title">My books</span>
+                </Link>
+              </li>
+            )}
             <li>
               <Link to="/settings">
                 <span className="sd-icon">
@@ -78,4 +82,8 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return { user: state.user };
+};
+
+export default connect(mapStateToProps)(Sidebar);

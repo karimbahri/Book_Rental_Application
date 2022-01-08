@@ -193,3 +193,10 @@ form .button input:hover {
     flex-direction: column;
   }
 }
+
+.server-failed {
+  font-size: medium;
+  font-weight: 300;
+  color: red;
+  text-align: center;
+}

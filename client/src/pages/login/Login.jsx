@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import server from "../../apis/server";
+import { connect } from "react-redux";
+import { currentUser } from "../../redux/actions";
 
 import "./Login.css";
 import avatar from "../../assets/avatar.svg";
 import library_logo from "../../assets/Login/LIBRARY-MANAGEMENT-SYSTEM.png";
 import wave from "../../assets/Login/wave.png";
 
-const Login = ({ setToken }) => {
-
+const Login = ({ setToken, currentUser }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const [wrongCredential, setwrongCredential] = useState(false);
@@ -48,8 +49,6 @@ const Login = ({ setToken }) => {
   }, []);
 
   const loginUser = async ({ username, password }) => {
-    /**************************************************/
-
     return server.post("/api/signin", {
       userName: username,
       password: password,
@@ -61,6 +60,7 @@ const Login = ({ setToken }) => {
 
     loginUser({ username, password })
       .then((response) => {
+        currentUser(response.data);
         setToken(response.data.token);
       })
       .catch((err) => {
@@ -121,7 +121,6 @@ const Login = ({ setToken }) => {
               className="btn"
               value="Login"
               onClick={onFormSubmit}
-              onChange={null}
             />
           </form>
           <div id="forgot-pw" className="login-content">
@@ -161,4 +160,8 @@ const Login = ({ setToken }) => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return { user: state.user };
+};
+export default connect(mapStateToProps, { currentUser })(Login);

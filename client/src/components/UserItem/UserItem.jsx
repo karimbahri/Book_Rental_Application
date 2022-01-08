@@ -1,6 +1,6 @@
 import avatar from "../../assets/Users/user_avatar.svg";
 
-const UserItem = ({ item: { fullName, email, role, created_at }, idx }) => {
+const UserItem = ({ item: { fullName, email, isAdmin, createdAt }, idx }) => {
   return (
     <tr>
       <td>{idx}</td>
@@ -9,23 +9,13 @@ const UserItem = ({ item: { fullName, email, role, created_at }, idx }) => {
         {fullName}
       </td>
       <td>{email}</td>
-      <td>{role}</td>
-      <td>{created_at}</td>
+      <td>{isAdmin ? "Admin" : "Guest"}</td>
+      <td>{createdAt}</td>
       <td>
-        <a
-          href="/"
-          className="settings"
-          title="Settings"
-          // data-toggle="tooltip"
-        >
+        <a href="/" className="settings" title="Settings">
           <ion-icon name="create"></ion-icon>
         </a>
-        <a
-          href="/"
-          className="delete"
-          title="Delete"
-          // data-toggle="tooltip"
-        >
+        <a href="/" className="delete" title="Delete">
           <ion-icon name="trash-bin"></ion-icon>
         </a>
       </td>
