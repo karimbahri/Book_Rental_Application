@@ -1,45 +1,61 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { updateUsers } from "../../redux/actions";
+
 import "./Users.css";
 import UserItem from "../../components/UserItem/UserItem";
 import InviteUser from "../../components/InviteUser/inviteUser";
+import server from "../../apis/server";
 
 const list_of_users = [
   {
     fullName: "Cherie E. James",
     email: "CherieEJames@jourrapide.com",
     role: "Guest",
-    created_at: "01/01/2021",
+    createdAt: "01/01/2021",
   },
   {
     fullName: "Howard R. Felix",
     email: "HowardRFelix@armyspy.com",
     role: "Guest",
-    created_at: "25/07/2021",
+    createdAt: "25/07/2021",
   },
   {
     fullName: "Joann M. Fultz",
     email: "JoannMFultz@jourrapide.com",
     role: "Guest",
-    created_at: "17/12/2021",
+    createdAt: "17/12/2021",
   },
   {
     fullName: "Cherie E. James",
     email: "CherieEJames@jourrapide.com",
     role: "Guest",
-    created_at: "01/01/2021",
+    createdAt: "01/01/2021",
   },
 ];
 const renderListUser = list_of_users.map((item, idx) => {
   return <UserItem item={item} idx={idx} key={idx} />;
 });
 
-// console.log(renderListUser);
-const Users = () => {
+const Users = ({ users, updateUsers }) => {
   const [openModel, setOpenModal] = useState(false);
+
+  const fetchUsers = async () => {
+    return server.get("api/users");
+  };
+  useEffect(() => {
+    console.log("fetch users");
+    const response = fetchUsers();
+    response.then((res) => updateUsers(res.data.data));
+  }, []);
+
+  const test = users.map((user, idx) => {
+    return <UserItem item={user} idx={idx} key={idx} />;
+  });
   return (
     <div className="users-body">
       {openModel && <InviteUser setOpenModal={setOpenModal} />}
-      {console.log(openModel)}
+
       <div className="container-xl">
         <div className="table-responsive">
           <div className="table-wrapper">
@@ -81,6 +97,7 @@ const Users = () => {
                 ) : (
                   renderListUser
                 )}
+                {test}
               </tbody>
             </table>
           </div>
@@ -90,4 +107,8 @@ const Users = () => {
   );
 };
 
-export default Users;
+const mapStateToProps = (state) => {
+  return { users: state.users };
+};
+
+export default connect(mapStateToProps, { updateUsers })(Users);
