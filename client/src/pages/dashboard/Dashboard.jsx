@@ -5,6 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Users from "../users/Users";
 import Books from "../books/Books";
 import MyBooks from "../myBooks/MyBooks";
+import Settings from "../settings/Settings";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -18,6 +19,7 @@ const Dashboard = () => {
             <Route path="users" element={<Users />} />
             <Route path="books" element={<Books />} />
             <Route path="my-books" element={<MyBooks />} />
+            <Route path="settings" element={<Settings />} />
           </Routes>
         </div>
       </div>
