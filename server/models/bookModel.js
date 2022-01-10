@@ -26,10 +26,10 @@ const bookSchema = mongoose.Schema({
     duration: {
         type: Number
     }
-},
+}/*,
 {
     timestamps: true
-}
+}*/
 );
 
 const bookModel = mongoose.model('books', bookSchema);
