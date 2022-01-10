@@ -27,6 +27,6 @@ app.use((err, req, res, next) => {
 /* MIDDLEWARES */
 
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log(`server running on LocalHost:${PORT}`);
 })
