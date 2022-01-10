@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import server from "../../apis/server";
+
 import "./inviteUser.css";
 
 const InviteUser = ({ setOpenModal }) => {
@@ -25,6 +27,15 @@ const InviteUser = ({ setOpenModal }) => {
   }, []);
 
   const [email, setEmail] = useState("");
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    setOpenModal(false);
+    server.post("/api/invite", {
+      email: { email },
+    });
+    console.log("email sent");
+  };
   return (
     <div className="modal-container">
       <div id="add-user" className="login-content">
@@ -49,7 +60,7 @@ const InviteUser = ({ setOpenModal }) => {
                 name="email"
                 className="input"
                 required
-                onChange={null}
+                onChange={(e) => setEmail(e.target.value)}
                 autoComplete="on"
               />
             </div>
@@ -58,10 +69,7 @@ const InviteUser = ({ setOpenModal }) => {
             type="submit"
             value="Send"
             className="btn"
-            onClick={(e) => {
-              e.preventDefault();
-              setOpenModal(false);
-            }}
+            onClick={(e) => onFormSubmit(e)}
           />
         </form>
       </div>

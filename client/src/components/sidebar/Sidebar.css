@@ -47,8 +47,8 @@
   border-bottom-left-radius: 30px;
 }
 
-.sd-navigation ul li:hover,
-.sd-navigation ul li.hovered {
+.sd-navigation ul li:not(:first-child):hover,
+.sd-navigation ul li:not(:first-child).hovered {
   background: white;
 }
 
@@ -59,12 +59,16 @@
   display: flex;
   text-decoration: none;
   color: white;
-  /* background: red; */
 }
 
-.sd-navigation ul li:hover a,
-.sd-navigation ul li.hovered a {
+.sd-navigation ul li:not(:first-child):hover a,
+.sd-navigation ul li:not(:first-child).hovered a {
   color: #f9a830;
+}
+
+.sd-navigation ul li:first-child:hover a,
+.sd-navigation ul li:first-child.hovered a {
+  cursor: default;
 }
 
 .sd-navigation ul li a .sd-icon {
@@ -91,8 +95,8 @@
   white-space: nowrap;
 }
 
-.sd-navigation ul li:hover a::before,
-.sd-navigation ul li.hovered a::before {
+.sd-navigation ul li:not(:first-child):hover a::before,
+.sd-navigation ul li:not(:first-child).hovered a::before {
   content: "";
   position: absolute;
   right: 0;
@@ -105,8 +109,8 @@
   pointer-events: none;
 }
 
-.sd-navigation ul li:hover a::after,
-.sd-navigation ul li.hovered a::after {
+.sd-navigation ul li:not(:first-child):hover a::after,
+.sd-navigation ul li:not(:first-child).hovered a::after {
   content: "";
   position: absolute;
   right: 0;
