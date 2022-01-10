@@ -1,5 +1,3 @@
-import server from "../../apis/server";
-
 export const currentUser = (userData) => {
   return {
     type: "CURRENT_USER",
@@ -7,7 +5,11 @@ export const currentUser = (userData) => {
   };
 };
 
-export const getUsers = () => async (dispatch) => {
-  const respone = await server.get("api/users");
-  dispatch({ type: "GET_USERS", payload: respone.data.data });
+// export const fetchUsers = () => async (dispatch) => {
+//   const respone = await server.get("api/users");
+//   dispatch({ type: "GET_USERS", payload: respone.data.data });
+// };
+
+export const updateUsers = (users) => {
+  return { type: "UPDATE_USERS", payload: users };
 };

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -9,7 +9,6 @@ import "./Registration.css";
 import useToken from "../../useToken";
 import { _useForm } from "./_useForm";
 import server from "../../apis/server";
-import { useEffect } from "react";
 
 const Registration = () => {
   const { token, setToken } = useToken();
@@ -17,6 +16,8 @@ const Registration = () => {
   const navigate = useNavigate();
   const [form, setForm] = _useForm();
   const [failed, setFailed] = useState(false);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
 
   localStorage.removeItem("token");
 
@@ -46,6 +47,8 @@ const Registration = () => {
       server
         .post("/api/signup", form)
         .then((rep) => {
+          const newUser = rep.data.data;
+          // dispatch({ type: "UPDATE_USERS", payload: [...users, newUser] });
           console.log("user created");
           navigate("/", { replace: true });
         })
@@ -56,10 +59,12 @@ const Registration = () => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      setFailed(!failed);
-    }, 5000);
-  }, [failed]);
+    const btnInput = document.querySelectorAll("input");
+    btnInput.forEach((btn) =>
+      btn.addEventListener("click", () => setFailed(false))
+    );
+  }, []);
+
   return (
     <div className="reg-body">
       <div className="reg-container">
@@ -88,7 +93,7 @@ const Registration = () => {
                   type="text"
                   name="userName"
                   placeholder="Enter your username"
-                  pattern="[A-Za-zÀ-ž\s]{3,}"
+                  pattern="[A-Za-zÀ-ž\s0-9]{3,}"
                   maxLength="40"
                   autoComplete="on"
                   onChange={(e) => setForm(e)}
@@ -114,7 +119,7 @@ const Registration = () => {
                   type="tel"
                   name="phoneNumber"
                   placeholder="e.g 98765432"
-                  maxLength="10"
+                  maxLength="8"
                   pattern="[0-9]{8}"
                   onChange={(e) => setForm(e)}
                   required

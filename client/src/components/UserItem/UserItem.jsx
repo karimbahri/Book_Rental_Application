@@ -1,6 +1,36 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import server from "../../apis/server";
+
 import avatar from "../../assets/Users/user_avatar.svg";
 
-const UserItem = ({ item: { fullName, email, isAdmin, createdAt }, idx }) => {
+const UserItem = ({
+  item: { fullName, email, isAdmin, createdAt, _id },
+  idx,
+}) => {
+  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const [deleted, setDeleted] = useState({});
+
+  const deleteUser = (id) => {
+    return server.delete(`/api/users/${id}`);
+  };
+
+  const delUser = (id) => {
+    console.log(`delete btn active ${id}`);
+    deleteUser(id).then((res) => {
+      setDeleted(res.data.data);
+      console.log(deleted);
+    });
+    console.log("clicked delete ");
+  };
+  useEffect(() => {
+    let newUsers = users.filter((user) => {
+      if (user._id !== deleted._id) return user;
+    });
+    dispatch({ type: "UPDATE_USERS", payload: newUsers });
+  }, [deleted]);
+
   return (
     <tr>
       <td>{idx}</td>
@@ -12,12 +42,12 @@ const UserItem = ({ item: { fullName, email, isAdmin, createdAt }, idx }) => {
       <td>{isAdmin ? "Admin" : "Guest"}</td>
       <td>{createdAt}</td>
       <td>
-        <a href="/" className="settings" title="Settings">
+        <div className="settings" title="Settings">
           <ion-icon name="create"></ion-icon>
-        </a>
-        <a href="/" className="delete" title="Delete">
-          <ion-icon name="trash-bin"></ion-icon>
-        </a>
+        </div>
+        <div className="delete" title="Delete" onClick={() => delUser(_id)}>
+          <ion-icon name="trash-bin" className="del-btn"></ion-icon>
+        </div>
       </td>
     </tr>
   );
