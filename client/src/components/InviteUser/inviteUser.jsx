@@ -31,8 +31,8 @@ const InviteUser = ({ setOpenModal }) => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     setOpenModal(false);
-    server.post("/api/invite", {
-      email: { email },
+    server.post("/api/addUser", {
+      email,
     });
     console.log("email sent");
   };
