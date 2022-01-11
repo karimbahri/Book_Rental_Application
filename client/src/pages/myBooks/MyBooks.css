@@ -6,6 +6,7 @@
 	color: #4f546c;
 	font-size: 0.9rem;
 	background-color: #f9fbff;
+	overflow: scroll;
 }
 
 .my-books-table {
