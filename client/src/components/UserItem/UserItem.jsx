@@ -5,7 +5,7 @@ import server from "../../apis/server";
 import avatar from "../../assets/Users/user_avatar.svg";
 
 const UserItem = ({
-  item: { fullName, email, isAdmin, createdAt, _id },
+  item: { fullName, email, isAdmin, created_at, _id },
   idx,
 }) => {
   const users = useSelector((state) => state.users);
@@ -40,7 +40,7 @@ const UserItem = ({
       </td>
       <td>{email}</td>
       <td>{isAdmin ? "Admin" : "Guest"}</td>
-      <td>{createdAt}</td>
+      <td>{created_at}</td>
       <td>
         <div className="settings" title="Settings">
           <ion-icon name="create"></ion-icon>
