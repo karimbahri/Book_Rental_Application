@@ -7,7 +7,7 @@
 }
 
 .dash-content {
-  position: fixed;
+  position: absolute;
   flex: 5;
   top: 60px;
   left: calc(100vw - 78%);
