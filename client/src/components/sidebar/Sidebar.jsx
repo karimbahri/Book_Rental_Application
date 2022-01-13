@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { socket } from "../../pages/registration/Registration";
+
 import "./Sidebar.css";
 
 const Sidebar = ({ user }) => {
@@ -16,7 +18,10 @@ const Sidebar = ({ user }) => {
 
   const signOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("state");
+    localStorage.removeItem("persist:root");
+
+    socket.emit("disconnect");
+    // localStorage.clear();
   };
 
   return (

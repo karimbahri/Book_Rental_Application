@@ -24,8 +24,8 @@ exports.addUser = async (req, res) => {
       subject: "Invitation",
       html: `<h2>Hey and welcome</h2>
             <div>
-                <b>I'm so happy to have you as part of our community!</b> 🥳<br>
-                <b>Please feel free to proceed with your inscription by clicking the link below.</b><br>
+                <b>We are so happy to have you as part of our community!</b> 🥳<br>
+                <b>Please feel free to proceed with your subscription by clicking the link below.</b><br>
             <a href='http://localhost:3000/registration/${uuidv4()}'>create account now</a><br><br>
             All the best,
             </div>`,
