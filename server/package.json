@@ -2,7 +2,7 @@
   "name": "ecommerce_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
@@ -19,6 +19,7 @@
     "mongoose": "^6.1.2",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1",
     "uuid": "^8.3.2",
     "validator": "^13.7.0"
   }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -8,7 +8,14 @@ import * as Yup from "yup";
 import "./Registration.css";
 import useToken from "../../useToken";
 import { _useForm } from "./_useForm";
+// import { addNewUserSocket } from "../../redux/actions";
 import server from "../../apis/server";
+
+const io = require("socket.io-client")("http://localhost:3030");
+
+export const socket = io.connect("http://localhost:3030", {
+  transports: ["websocket"],
+});
 
 const Registration = () => {
   const { token, setToken } = useToken();
@@ -16,10 +23,12 @@ const Registration = () => {
   const navigate = useNavigate();
   const [form, setForm] = _useForm();
   const [failed, setFailed] = useState(false);
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
 
-  localStorage.removeItem("token");
+  console.dir(socket);
+
+  useEffect(() => {
+    localStorage.removeItem("token");
+  }, []);
 
   const formSchema = Yup.object().shape({
     password: Yup.string()
@@ -48,11 +57,12 @@ const Registration = () => {
         .post("/api/signup", form)
         .then((rep) => {
           const newUser = rep.data.data;
-          // dispatch({ type: "UPDATE_USERS", payload: [...users, newUser] });
           console.log("user created");
+          socket.emit("addUser", newUser);
           navigate("/", { replace: true });
         })
         .catch((err) => {
+          console.log(err.message);
           setFailed(true);
         });
     }
