@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
+const { addId } = require("./idsControllers");
 
 exports.addUser = async (req, res) => {
   if (!req.body) {
@@ -18,6 +19,7 @@ exports.addUser = async (req, res) => {
       },
     });
 
+    const id = uuidv4();
     let info = await transporter.sendMail({
       from: "Book rental",
       to: req.body.email,
@@ -26,13 +28,14 @@ exports.addUser = async (req, res) => {
             <div>
                 <b>I'm so happy to have you as part of our community!</b> 🥳<br>
                 <b>Please feel free to proceed with your inscription by clicking the link below.</b><br>
-            <a href='http://localhost:3000/registration/${uuidv4()}'>create account now</a><br><br>
+            <a href='http://localhost:3000/registration/${id}'>create account now</a><br><br>
             All the best,
             </div>`,
     });
     res.status(202).json({
       status: "Success",
     });
+    addId(id, req.body.email);
   } catch (err) {
     res.status(406).json({
       status: "Failure",
