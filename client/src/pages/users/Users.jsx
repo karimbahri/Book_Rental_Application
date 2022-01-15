@@ -1,36 +1,36 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import { updateUsers } from "../../redux/actions";
 
 import "./Users.css";
+import UsersList from "../../components/UsersList/UsersLists";
 import UserItem from "../../components/UserItem/UserItem";
 import InviteUser from "../../components/InviteUser/inviteUser";
-import server from "../../apis/server";
 
 const list_of_users = [
   {
     fullName: "Cherie E. James",
     email: "CherieEJames@jourrapide.com",
     role: "Guest",
-    createdAt: "01/01/2021",
+    created_at: "01/01/2021",
   },
   {
     fullName: "Howard R. Felix",
     email: "HowardRFelix@armyspy.com",
     role: "Guest",
-    createdAt: "25/07/2021",
+    created_at: "25/07/2021",
   },
   {
     fullName: "Joann M. Fultz",
     email: "JoannMFultz@jourrapide.com",
     role: "Guest",
-    createdAt: "17/12/2021",
+    created_at: "17/12/2021",
   },
   {
     fullName: "Cherie E. James",
     email: "CherieEJames@jourrapide.com",
     role: "Guest",
-    createdAt: "01/01/2021",
+    created_at: "01/01/2021",
   },
 ];
 const renderListUser = list_of_users.map((item, idx) => {
@@ -40,18 +40,6 @@ const renderListUser = list_of_users.map((item, idx) => {
 const Users = ({ users, updateUsers }) => {
   const [openModel, setOpenModal] = useState(false);
 
-  const fetchUsers = async () => {
-    return server.get("api/users");
-  };
-  useEffect(() => {
-    console.log("fetch users");
-    const response = fetchUsers();
-    response.then((res) => updateUsers(res.data.data));
-  }, []);
-
-  const test = users.map((user, idx) => {
-    return <UserItem item={user} idx={idx} key={idx} />;
-  });
   return (
     <div className="users-body">
       {openModel && <InviteUser setOpenModal={setOpenModal} />}
@@ -90,14 +78,8 @@ const Users = ({ users, updateUsers }) => {
                 </tr>
               </thead>
               <tbody className="table-rows">
-                {!renderListUser ? (
-                  <td colSpan={6} style={{ textAlign: "center" }}>
-                    no users found
-                  </td>
-                ) : (
-                  renderListUser
-                )}
-                {test}
+                {renderListUser}
+                <UsersList />
               </tbody>
             </table>
           </div>

@@ -13,3 +13,7 @@ export const currentUser = (userData) => {
 export const updateUsers = (users) => {
   return { type: "UPDATE_USERS", payload: users };
 };
+
+export const addUser = (user) => {
+  return { type: "ADD_USER", payload: user };
+};

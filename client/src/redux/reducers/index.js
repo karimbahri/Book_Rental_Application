@@ -10,11 +10,14 @@ const userData = (state = null, action) => {
 };
 
 const usersList = (users = [], action) => {
-  if (action.type === "UPDATE_USERS") {
-    console.log(action.payload);
-    return [...action.payload];
+  switch (action.type) {
+    case "UPDATE_USERS":
+      return [...action.payload];
+    // case "ADD_USER":
+    //   return [...users, action.payload];
+    default:
+      return users;
   }
-  return users;
 };
 
 const rootReducer = combineReducers({
