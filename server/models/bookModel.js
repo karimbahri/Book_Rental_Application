@@ -23,7 +23,7 @@ const bookSchema = mongoose.Schema({
         min: 1,
         max: 5
     },
-    duration: {
+    period: {
         type: Number
     }
 }/*,

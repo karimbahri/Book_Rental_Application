@@ -3,6 +3,8 @@ const cryptoJs = require('crypto-js');
 const jwt = require('jsonwebtoken');
 const {isStrongPassword} = require("validator");
 const { v4: uuidv4 } = require('uuid');
+const { deleteId } = require('./idsControllers');
+
 
 exports.createUser = (req, res) => {
     if (!req.body) {
@@ -46,13 +48,13 @@ exports.createUser = (req, res) => {
     user
     .save()
     .then(data => {
+        deleteId(data.email);
         res
           .status(202)
           .json({
               status: 'Success',
               data
           })
-
     })
     .catch(err => {
         res

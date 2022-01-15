@@ -46,9 +46,9 @@ const userSchema = mongoose.Schema({
     },
     orders: {
         type: [{
-            id: String,
-            checkout_date: Date,
-            checkin_date: Date
+            id: mongoose.Schema.Types.ObjectId,
+            checkout_date: String,
+            checkin_date: String
         }],
         default: []
     },
