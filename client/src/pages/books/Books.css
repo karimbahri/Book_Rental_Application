@@ -1,0 +1,21 @@
+._cards {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  margin: 5% auto;
+  max-width: 1200px;
+  /* height: 100vh; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  overflow-y: auto;
+}
+
+._cards * {
+  box-sizing: border-box;
+}
+
+._cards.scrollable-content {
+  flex-grow: 1;
+  overflow: auto;
+}

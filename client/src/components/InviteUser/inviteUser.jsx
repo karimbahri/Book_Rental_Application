@@ -68,7 +68,7 @@ const InviteUser = ({ setOpenModal }) => {
           <input
             type="submit"
             value="Send"
-            className="btn"
+            className="btn _btn"
             onClick={(e) => onFormSubmit(e)}
           />
         </form>
