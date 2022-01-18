@@ -118,7 +118,7 @@ const Login = ({ setToken, currentUser }) => {
             )}
             <input
               type="submit"
-              className="btn"
+              className="btn _btn"
               value="Login"
               onClick={onFormSubmit}
             />
@@ -149,7 +149,7 @@ const Login = ({ setToken, currentUser }) => {
               <input
                 type="submit"
                 value="Send"
-                className="btn"
+                className="btn _btn"
                 onClick={null}
               />
             </form>
