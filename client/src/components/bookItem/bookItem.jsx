@@ -26,7 +26,7 @@ export const BookItem = (book) => {
             <span className="pub">{book.author}</span>
             <div className="_description">
               <p className="_card-text">
-                {book.description.slice(163) + "..."}
+                {book.description.slice(0, 180) + "..."}
               </p>
             </div>
 

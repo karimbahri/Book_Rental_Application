@@ -17,12 +17,8 @@ const books = [
     title: "Ugly Love: A Novel",
     author: "Colleen Hoover",
     category: "Fiction",
-    description: `
-    From Colleen Hoover, the #1 New York Times bestselling author of It Ends With Us,
-     a heart-wrenching love story that proves attraction at first sight can be messy.
-      When Tate Collins meets airline pilot Miles Archer, she doesn't think it's love at first sight.
-       They wouldn’t even go so far as to consider themselves friends.
-       `,
+    description:
+      "From Colleen Hoover, the #1 New York Times bestselling author of It Ends With Us, a heart-wrenching love story that proves attraction at first sight can be messy. When Tate Collins meets airline pilot Miles Archer, she doesn't think it's love at first sight. They wouldn’t even go so far as to consider themselves friends.",
     rate: "",
     cover:
       "https://covers.zlibcdn2.com/covers299/books/eb/a5/01/eba501594ab62859df0601e626eb7631.jpg",
