@@ -29,8 +29,10 @@ routes
 
 routes
 .post('/api/orderBook', bookControllers.order_book)
+.post('/api/renounceBook', bookControllers.renounceBook)
 .post('/api/createBook', bookControllers.createBook)
-.get('/api/books', bookControllers.findBooks);
+.get('/api/books', bookControllers.findBooks)
+.get('/api/myBooks/:userId', bookControllers.findUserBooks);
 
 // ----------------add user request----------------
 

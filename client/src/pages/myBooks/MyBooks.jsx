@@ -1,9 +1,10 @@
 import "./MyBooks.css";
 import thumb from './book.jpg';
+import MyBooksList from "../../components/myBooksList/myBooksList";
 
 const MyBooks = () => {
   return <div className="my-books-container">
-  <table className="my-books-table">
+  {/* <table className="my-books-table">
     <thead>
       <tr>
         <th></th>
@@ -104,7 +105,8 @@ const MyBooks = () => {
         <td className="status paid"><p>Paid</p></td>
       </tr>
     </tbody>
-  </table>
+  </table> */}
+  <MyBooksList />
 </div>;
 }
 
