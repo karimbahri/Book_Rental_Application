@@ -31,6 +31,7 @@ routes
 .post('/api/orderBook', bookControllers.order_book)
 .post('/api/renounceBook', bookControllers.renounceBook)
 .post('/api/createBook', bookControllers.createBook)
+.delete('/api/books/:id', bookControllers.deleteBook)
 .get('/api/books', bookControllers.findBooks)
 .get('/api/myBooks/:userId', bookControllers.findUserBooks);
 
