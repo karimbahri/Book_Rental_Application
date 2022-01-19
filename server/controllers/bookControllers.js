@@ -63,6 +63,28 @@ exports.createBook = (req, res) => {
     })
 }
 
+exports.deleteBook = (req, res) => {
+  bookModel
+    .findByIdAndDelete(req.params.id)
+    .then((data) => {
+      if (data) {
+        res.status(200).json({
+          status: "success",
+          data,
+        });
+      } else {
+        res.status(400).json({
+          message: "Cannot delete book! book not found",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(404).json({
+        message: err.message,
+      });
+    });
+};
+
 const getYMD = (days) => {
   const today = new Date();
   today.setDate(today.getDate() + days);
