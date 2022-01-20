@@ -13,22 +13,31 @@ const usersList = (users = [], action) => {
   switch (action.type) {
     case "UPDATE_USERS":
       return [...action.payload];
-    // case "ADD_USER":
-    //   return [...users, action.payload];
     default:
       return users;
   }
 };
 
+const booksList = (books = [], action) => {
+  if (action.type === "UPDATE_BOOKS") {
+    console.log(action.payload);
+    return [...action.payload];
+  } else {
+    return books;
+  }
+};
+
+const ordersList = (orders = [], action) => {};
 const rootReducer = combineReducers({
   user: userData,
   users: usersList,
+  books: booksList,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user", "users"],
+  whitelist: ["user", "users", "books"],
 };
 
 export default persistReducer(persistConfig, rootReducer);
