@@ -34,10 +34,9 @@ const MyBooksList = () => {
       </tr>
     </thead>
     <tbody>
-        {data.map(myBook => {
-          let i = 0;
+        {data.map((myBook, i) => {
             return (
-              <tr key={`${i++}`}>
+              <tr key={i}>
                 <td><img src = {myBook.book_data.cover}/></td>
                 <td>{myBook.book_data.title}</td>
                 <td className="amount">{myBook.book_data.price} dt</td>
