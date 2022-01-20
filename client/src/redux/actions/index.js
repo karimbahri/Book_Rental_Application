@@ -5,15 +5,14 @@ export const currentUser = (userData) => {
   };
 };
 
-// export const fetchUsers = () => async (dispatch) => {
-//   const respone = await server.get("api/users");
-//   dispatch({ type: "GET_USERS", payload: respone.data.data });
-// };
+export const updateBooks = (books) => {
+  return { type: "UPDATE_BOOKS", payload: books };
+};
 
 export const updateUsers = (users) => {
   return { type: "UPDATE_USERS", payload: users };
 };
 
-export const addUser = (user) => {
-  return { type: "ADD_USER", payload: user };
+export const upadteOrders = (orders) => {
+  return { type: "UPDATE_ORDERS", payload: orders };
 };

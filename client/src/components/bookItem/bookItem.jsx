@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "./bookItem.css";
 
 export const BookItem = (book) => {
@@ -31,7 +30,9 @@ export const BookItem = (book) => {
             </div>
 
             <div className="card-footer">
-              <button className="btn btn-success">Book Now</button>
+              <button className="btn btn-success order" id={book._id}>
+                Book Now
+              </button>
               <div className="rating">
                 <label htmlFor="stars-rating-1 ">
                   <i className="fa fa-star text-warning" id="1"></i>
