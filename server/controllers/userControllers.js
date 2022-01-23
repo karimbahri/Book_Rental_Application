@@ -34,7 +34,7 @@ exports.createUser = (req, res) => {
     fullName: req.body.fullName,
     email: req.body.email,
     isAdmin: req.body.isAdmin,
-    password: req.body.password /*cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY)*/,
+    password: cryptoJs.MD5(req.body.password) /*req.body.password*/,
     address: req.body.address,
     userName: req.body.userName.toLowerCase(),
     phoneNumber: req.body.phoneNumber,
@@ -109,6 +109,9 @@ exports.updateUser = (req, res) => {
       message: "Cannot put empty object",
     });
   }
+  if (req.body.password) {
+    req.body.password = cryptoJs.MD5(req.body.password).toString(cryptoJs.enc.Base64);
+  }
   userModel
     .findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false })
     .then((data) => {
@@ -164,12 +167,9 @@ exports.login = async (req, res) => {
 
     if (user) {
       const { password, ...others } = user._doc;
+      const hashedPassword = cryptoJs.MD5(req.body.password).toString(cryptoJs.enc.Base64);
 
-      // let decrypted_pass = cryptoJs.AES.decrypt(password, process.env.ENCRYPTIONKEY);
-      // decrypted_pass = decrypted_pass.toString(cryptoJs.enc.Utf8);
-
-      // console.log(decrypted_pass);
-      if (req.body.password !== /*decrypted_pass*/ password)
+      if (hashedPassword !== /*decrypted_pass*/ password)
         return res.status(401).json({
           status: "Failure",
           message: "wrong password",

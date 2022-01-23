@@ -31,7 +31,7 @@ const Registration = () => {
     server
     .get('api/ids')
     .then(data => {
-      const ID_EXIST = false;
+      let ID_EXIST = false;
       const ids = data.data.data;
       ids.forEach(idObj => {
         if (idObj.id === sessonId) ID_EXIST = true;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Users from "../users/Users";
@@ -7,8 +7,13 @@ import Books from "../books/Books";
 import MyBooks from "../myBooks/MyBooks";
 import Settings from "../settings/Settings";
 import "./Dashboard.css";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate('/books');
+  }, [])
   return (
     <>
       <Topbar />
