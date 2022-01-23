@@ -48,17 +48,17 @@
   position: relative;
   top: 25%;
 }
-.my-books-table .pending {
+.my-books-table .paid {
   background-color: #fff0c2;
   color: #a68b00;
 }
 
-.my-books-table .paid {
+.my-books-table .borrowed {
   background-color: #c8e6c9;
   color: #388e3c;
 }
 
-.my-books-table .unpaid {
+.my-books-table .not-delivered {
   background-color: #ffcdd2;
   color: #c62828;
 }

@@ -3,6 +3,7 @@ import server from "../../apis/server";
 
 const MyBooksList = () => {
     const [data, setData] = useState([]);
+    const now = new Date();
     useEffect(() => {
           const id = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)._id;
           server.get(`api/myBooks/${id}`)
@@ -35,6 +36,10 @@ const MyBooksList = () => {
     </thead>
     <tbody>
         {data.map((myBook, i) => {
+          const checkinDate = new Date(myBook.checkin_date);
+          const isDeliverd = now.getTime() >= checkinDate.getTime();
+          const btnClass = "status " + (isDeliverd ? "not-delivered" : "borrowed");
+          // const btnClass = "status " + `${isDeliverd ? "not-delivered" : "borrowed"}`;
             return (
               <tr key={i}>
                 <td><img src = {myBook.book_data.cover}/></td>
@@ -42,7 +47,7 @@ const MyBooksList = () => {
                 <td className="amount">{myBook.book_data.price} dt</td>
                 <td>{myBook.checkout_date}</td>
                 <td>{myBook.checkin_date}</td>
-                <td className="status paid"><p>Paid</p></td>
+                <td className={btnClass}><p>{isDeliverd ? "Unreturned" : "Borrowed"}</p></td>
               </tr>
             )
         })}
