@@ -34,7 +34,7 @@ exports.createUser = (req, res) => {
     fullName: req.body.fullName,
     email: req.body.email,
     isAdmin: req.body.isAdmin,
-    password: cryptoJs.MD5(req.body.password) /*req.body.password*/,
+    password: cryptoJs.MD5(req.body.password).toString(cryptoJs.enc.Base64) /*req.body.password*/,
     address: req.body.address,
     userName: req.body.userName.toLowerCase(),
     phoneNumber: req.body.phoneNumber,
