@@ -39,7 +39,6 @@ const MyBooksList = () => {
           const checkinDate = new Date(myBook.checkin_date);
           const isDeliverd = now.getTime() >= checkinDate.getTime();
           const btnClass = "status " + (isDeliverd ? "not-delivered" : "borrowed");
-          // const btnClass = "status " + `${isDeliverd ? "not-delivered" : "borrowed"}`;
             return (
               <tr key={i}>
                 <td><img src = {myBook.book_data.cover}/></td>
