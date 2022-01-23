@@ -40,4 +40,8 @@ routes
 routes
 .post('/api/addUser', mailRegistrationControllers.addUser);
 
+// ------------------ids request-------------------
+routes
+.get('/api/ids', idsControllers.getIds);
+
 module.exports = routes;

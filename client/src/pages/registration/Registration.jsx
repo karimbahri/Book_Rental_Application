@@ -28,6 +28,19 @@ const Registration = () => {
 
   useEffect(() => {
     localStorage.removeItem("token");
+    server
+    .get('api/ids')
+    .then(data => {
+      const ID_EXIST = false;
+      const ids = data.data.data;
+      ids.forEach(idObj => {
+        if (idObj.id === sessonId) ID_EXIST = true;
+      })
+      if (!ID_EXIST) {
+        navigate('/');
+      }
+    })
+    .catch(err => console.log(err.message))
   }, []);
 
   const formSchema = Yup.object().shape({
