@@ -34,9 +34,7 @@ exports.createUser = (req, res) => {
     fullName: req.body.fullName,
     email: req.body.email,
     isAdmin: req.body.isAdmin,
-    password:
-      req.body
-        .password /*cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY)*/,
+    password: req.body.password /*cryptoJs.AES.encrypt(req.body.password, process.env.ENCRYPTIONKEY)*/,
     address: req.body.address,
     userName: req.body.userName.toLowerCase(),
     phoneNumber: req.body.phoneNumber,
