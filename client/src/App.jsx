@@ -9,8 +9,8 @@ import useToken from "./useToken";
 
 const App = () => {
   const { setToken } = useToken();
-  const { sessonId } = useParams();
-  console.log(sessonId);
+  // const { sessonId } = useParams();
+  // console.log(sessonId);
   let token = localStorage.getItem("token");
   // console.log(token);
   return (

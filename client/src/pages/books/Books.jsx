@@ -79,7 +79,7 @@ const Books = () => {
     server
       .get("/api/books")
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
         dispatch(updateBooks(res.data.data));
       })
       .catch((err) => console.log(err.message));
@@ -88,9 +88,9 @@ const Books = () => {
   useEffect(() => {
     console.log("fetch books");
     fetchBooks();
-    console.log(books);
+    // console.log(books);
     const order_btns = document.querySelectorAll(".order");
-    console.log(order_btns);
+    // console.log(order_btns);
     order_btns.forEach((btn) => {
       const bookId = btn.getAttribute("id");
       btn.addEventListener("click", () => orderBook(currentUser._id, bookId));
@@ -98,7 +98,6 @@ const Books = () => {
   }, []);
 
   const renderBooks = (books) => {
-    console.log(books);
     return books.map((book, idx) => {
       return <BookItem {...book} key={idx} />;
     });

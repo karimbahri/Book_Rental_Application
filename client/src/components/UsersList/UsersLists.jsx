@@ -13,7 +13,7 @@ const UsersList = () => {
   let renderListUser;
 
   socket.on("addUser", (res) => {
-    console.dir(res);
+    // console.dir(res);
     fetchUsers();
     socket.off("on");
   });
@@ -26,7 +26,7 @@ const UsersList = () => {
   };
 
   useEffect(() => {
-    console.log("fetch users");
+    // console.log("fetch users");
     fetchUsers();
   }, []);
 

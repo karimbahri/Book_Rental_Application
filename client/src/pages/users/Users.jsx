@@ -4,38 +4,7 @@ import { updateUsers } from "../../redux/actions";
 
 import "./Users.css";
 import UsersList from "../../components/UsersList/UsersLists";
-import UserItem from "../../components/UserItem/UserItem";
 import InviteUser from "../../components/InviteUser/inviteUser";
-
-const list_of_users = [
-  {
-    fullName: "Cherie E. James",
-    email: "CherieEJames@jourrapide.com",
-    role: "Guest",
-    created_at: "01/01/2021",
-  },
-  {
-    fullName: "Howard R. Felix",
-    email: "HowardRFelix@armyspy.com",
-    role: "Guest",
-    created_at: "25/07/2021",
-  },
-  {
-    fullName: "Joann M. Fultz",
-    email: "JoannMFultz@jourrapide.com",
-    role: "Guest",
-    created_at: "17/12/2021",
-  },
-  {
-    fullName: "Cherie E. James",
-    email: "CherieEJames@jourrapide.com",
-    role: "Guest",
-    created_at: "01/01/2021",
-  },
-];
-const renderListUser = list_of_users.map((item, idx) => {
-  return <UserItem item={item} idx={idx} key={idx} />;
-});
 
 const Users = ({ users, updateUsers }) => {
   const [openModel, setOpenModal] = useState(false);
@@ -78,7 +47,6 @@ const Users = ({ users, updateUsers }) => {
                 </tr>
               </thead>
               <tbody className="table-rows">
-                {renderListUser}
                 <UsersList />
               </tbody>
             </table>

@@ -1,5 +1,5 @@
 {
-  "name": "webstack-portfolio",
+  "name": "book_rental_management",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,6 @@
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.4.1",
     "web-vitals": "^2.1.2",
     "yup": "^0.32.11"

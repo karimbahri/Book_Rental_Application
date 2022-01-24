@@ -20,7 +20,6 @@ const usersList = (users = [], action) => {
 
 const booksList = (books = [], action) => {
   if (action.type === "UPDATE_BOOKS") {
-    console.log(action.payload);
     return [...action.payload];
   } else {
     return books;
