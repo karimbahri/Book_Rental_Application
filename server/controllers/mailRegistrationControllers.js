@@ -14,8 +14,8 @@ exports.addUser = async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "med.hedi.marrakchi@gmail.com", // generated ethereal user
-        pass: "Mm)`hvW7sPn\\>72]", // generated ethereal password
+        user: process.env.OWNER_EMAIL, // generated ethereal user
+        pass: process.env.OWNER_PASS, // generated ethereal password
       },
     });
 
